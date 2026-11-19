@@ -1,0 +1,54 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Environments
+.env
+.venv/
+venv/
+env/
+conda-meta/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+jupyter_notebook_config.py
+
+# Data (keep folders, ignore contents)
+data/raw/*
+data/processed/*
+data/external/*
+!data/**/.gitkeep
+projects/**/data/*
+!projects/**/data/.gitkeep
+*.csv
+*.xlsx
+*.xls
+*.parquet
+*.json.gz
+*.zip
+
+# Outputs
+outputs/*
+!outputs/.gitkeep
+projects/**/outputs/*
+!projects/**/outputs/.gitkeep
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# Database / credentials
+*.sql.gz
+*.dump
+pgdata/
+*.log
+.pgpass
+pgadmin4.db
+.secrets/

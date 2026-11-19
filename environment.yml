@@ -1,0 +1,15 @@
+name: data-analytics
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - pandas
+  - numpy
+  - matplotlib
+  - seaborn
+  - jupyterlab
+  - notebook
+  - sqlalchemy
+  - psycopg2
+  - openpyxl
+  - pip
