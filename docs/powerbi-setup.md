@@ -35,6 +35,8 @@ portfolio so it can be reproduced.
 - `Autounattend.xml` — answers file that automates Windows Setup (language, disk layout,
   Pro edition, local account `analyst`, auto-logon, OOBE skip). Packaged into a small ISO
   and attached to a second CD drive during install.
+- `vm-shared/` (in this repo) — macOS↔Windows exchange folder configured for UTM SPICE
+  WebDAV sharing (read/write): `datasets/` for inputs, `exports/` for outputs.
 
 ## Steps taken
 
@@ -65,8 +67,20 @@ portfolio so it can be reproduced.
     ```
 12. Launch **Power BI Desktop** to confirm it opens (start/home screen). Sign-in to the
     Power BI service is optional for local authoring.
-13. (Optional) Share a folder from macOS to the VM (UTM → VM Settings → Shared Directory)
-    to pass CSV/Excel files between the two systems.
+13. Configure a shared folder from macOS to the VM (UTM → VM Settings → Sharing) to pass
+    CSV/Excel files between the two systems.
+    - **Sharing mode:** SPICE WebDAV (DirectoryShareMode `WebDAV`), **Read Only:** off.
+    - **macOS folder (configured):** `data-analytics-portfolio/vm-shared/` (absolute: `/Users/dikshitpunwar/Documents/Default Project/data-analytics-portfolio/vm-shared`)
+      - `datasets/` — place CSV/Excel/Parquet source files for Power BI / Power Query.
+      - `exports/` — save reports/exports/output files from the VM back to macOS.
+    - **Inside Windows (UTM Guest Tools required):** the WebDAV share should appear in File
+      Explorer (e.g. under This PC / Network locations) after boot/login. If it does not
+      auto-mount, add/map the guest WebDAV endpoint (commonly `http://localhost:9843` inside
+      the VM) as a network location/drive, then browse to the shared folder.
+    - **Verify:** start "Windows 11 ARM", log in as `analyst`, confirm `vm-shared` (with
+      `datasets/` and `exports/`) is accessible, and open a file from `datasets/` in Power BI
+      Desktop or Power Query. Keep source data/outputs in this repo folder on macOS (the VM
+      disk is disposable).
 
 ### Windows credentials (local VM only)
 
